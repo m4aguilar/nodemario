@@ -1,14 +1,14 @@
-const http = require('http');
+var express = require('express');
+var app = express();
+var paht = require('path');
+var ejs = require('ejs');
 
-const hostname = '127.0.0.1';
-const port = 3000;
+app.set('port', (process.env.PORT || 8080));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
+app.get('/', function(req, res){
+  res.render('index.html');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(app.get('port'));
