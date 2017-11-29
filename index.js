@@ -1,11 +1,14 @@
-// index.js
-var express = require('express');
-var app = express();
+const http = require('http');
 
-app.set('port', (process.env.PORT || 8080))
+const hostname = '127.0.0.1';
+const port = 3000;
 
-app.get('/', function(req, res){
-  res.json({ mensaje: 'Madre mía que guapa!!! <3 <3 <3 Rubí'});
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
 });
 
-app.listen(app.get('port'));
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
